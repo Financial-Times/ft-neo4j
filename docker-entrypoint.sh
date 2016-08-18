@@ -43,6 +43,11 @@ if [ "$1" == "neo4j" ]; then
     setting "ha.cluster_server" "${NEO4J_HA_ADDRESS:-}:5001" neo4j.properties
     setting "ha.initial_hosts" "${NEO4J_INITIAL_HOSTS:-}" neo4j.properties
 
+    # FT added settings start
+    setting "org.neo4j.server.http.log.enabled" "${NEO4J_HTTP_LOG_ENABLED:-true}" neo4j-server.properties
+    setting "org.neo4j.server.http.log.config" "/neo4j-http-logging.xml" neo4j-server.properties
+    # FT added settings end
+
     [ -f "${EXTENSION_SCRIPT:-}" ] && . ${EXTENSION_SCRIPT}
 
     if [ -d /conf ]; then

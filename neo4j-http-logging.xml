@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <!-- Note the deliberate misspelling of "referer" in accordance with RFC1616 -->
+      <pattern>%h %l %user [%t{dd/MMM/yyyy:HH:mm:ss Z}] "%r" %s %b "%i{Referer}" "%i{User-Agent}" %D</pattern>
+    </encoder>
+  </appender>
+
+  <appender-ref ref="STDOUT"/>
+</configuration>
