@@ -2,9 +2,10 @@ FROM alpine:3.4
 
 RUN apk update && apk add openjdk8-jre curl bash
 
-ENV NEO4J_SHA256 7b2f30d73af107eacd9a3a619475ef448a08eecb2cdb42ab1f8a38d091c70ecb
-ENV NEO4J_TARBALL neo4j-community-2.3.1-unix.tar.gz
-ARG NEO4J_URI=http://dist.neo4j.org/neo4j-community-2.3.1-unix.tar.gz
+ENV NEO4J_VERSION=2.3.6
+ENV NEO4J_SHA256 738263c6785095f56b9051904ff2d1b30a13f680a748f483a450da63b04a5667
+ENV NEO4J_TARBALL neo4j-community-${NEO4J_VERSION}-unix.tar.gz
+ARG NEO4J_URI=http://dist.neo4j.org/neo4j-community-${NEO4J_VERSION}-unix.tar.gz
 
 COPY ./local-package/* /tmp/
 
