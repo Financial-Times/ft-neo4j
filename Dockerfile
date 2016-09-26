@@ -1,14 +1,15 @@
 FROM alpine:3.4
 
-RUN apk update && apk add openjdk8-jre curl bash
-
-ENV NEO4J_SHA256 7b2f30d73af107eacd9a3a619475ef448a08eecb2cdb42ab1f8a38d091c70ecb
-ENV NEO4J_TARBALL neo4j-community-2.3.1-unix.tar.gz
-ARG NEO4J_URI=http://dist.neo4j.org/neo4j-community-2.3.1-unix.tar.gz
+ENV NEO4J_VERSION=2.3.7
+ENV NEO4J_SHA256=64b2607f173db5e11671eb39087d06bca6d959e6a77f33a5c0ec3a4efd2b9d2b
+ENV NEO4J_TARBALL=neo4j-enterprise-${NEO4J_VERSION}-unix.tar.gz
+ARG NEO4J_URI=https://neo4j.com/artifact.php?name=neo4j-enterprise-${NEO4J_VERSION}-unix.tar.gz
 
 COPY ./local-package/* /tmp/
 
-RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
+RUN apk update && apk add --no-cache openjdk8-jre curl bash ca-certificates
+
+RUN curl --fail --show-error --silent --location ${NEO4J_URI} -o ${NEO4J_TARBALL} \
     && echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" >/tmp/cs \
     && sha256sum -c /tmp/cs \
     && rm /tmp/cs \
