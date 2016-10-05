@@ -42,6 +42,9 @@ if [ "$1" == "neo4j" ]; then
     setting "ha.server" "${NEO4J_HA_ADDRESS:-}:6001" neo4j.properties
     setting "ha.cluster_server" "${NEO4J_HA_ADDRESS:-}:5001" neo4j.properties
     setting "ha.initial_hosts" "${NEO4J_INITIAL_HOSTS:-}" neo4j.properties
+    echo "dbms.querylog.enabled=true">>conf/neo4j.properties
+    echo "dbms.querylog.parameter_logging_enabled=true">>conf/neo4j.properties
+    echo "dbms.querylog.filename=/dev/stdout">>conf/neo4j.properties
 
     # FT added settings start
     setting "org.neo4j.server.http.log.enabled" "${NEO4J_HTTP_LOG_ENABLED:-true}" neo4j-server.properties
