@@ -45,7 +45,17 @@ if [ "$1" == "neo4j" ]; then
     echo "dbms.querylog.enabled=${DBMS_QUERYLOG_ENABLED:-true}">>conf/neo4j.properties
     echo "dbms.querylog.parameter_logging_enabled=${DBMS_QUERYLOG_PARAMETER_LOGGING_ENABLED:-true}">>conf/neo4j.properties
     echo "dbms.querylog.filename=${DBMS_QUERYLOG_FILENAME:-/dev/stdout}">>conf/neo4j.properties
-    echo "dbms.querylog.threshold=${DBMS_QUERYLOG_THRESHOLD:-500ms}">>conf/neo4j.properties        
+    echo "dbms.querylog.threshold=${DBMS_QUERYLOG_THRESHOLD:-500ms}">>conf/neo4j.properties
+
+    # Graphite integration start
+    if [ "${GRAPHITE_ENABLED:-false}" = true ]; then
+    	echo "metrics.enabled=${GRAPHITE_ENABLED}" >> conf/neo4j.properties
+    	echo "metrics.graphite.enabled=${GRAPHITE_ENABLED:-true}" >> conf/neo4j.properties
+    	echo "metrics.graphite.server=${GRAPHITE_ADDRESS}" >> conf/neo4j.properties
+    	echo "metrics.graphite.interval=${GRAPHITE_INTERVAL:-3m}" >> conf/neo4j.properties
+    	echo "metrics.prefix=${GRAPHITE_PREFIX}" >> conf/neo4j.properties
+    fi
+    # Graphite integration end
 
     # FT added settings start
     setting "org.neo4j.server.http.log.enabled" "${NEO4J_HTTP_LOG_ENABLED:-true}" neo4j-server.properties

@@ -24,8 +24,8 @@ RUN mv data /data \
 
 VOLUME /data
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-COPY neo4j-http-logging.xml /neo4j-http-logging.xml
+COPY docker-entrypoint.sh /
+COPY neo4j-http-logging.xml /
 
 EXPOSE 7474 7473
 
