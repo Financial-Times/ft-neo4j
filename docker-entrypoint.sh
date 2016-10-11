@@ -48,6 +48,7 @@ if [ "$1" == "neo4j" ]; then
     echo "dbms.querylog.threshold=${DBMS_QUERYLOG_THRESHOLD:-500ms}">>conf/neo4j.properties
 
     # Graphite integration start
+    echo "metrics.enabled=${GRAPHITE_ENABLED:-true}" >> conf/neo4j.properties
     echo "metrics.graphite.enabled=${GRAPHITE_ENABLED:-true}" >> conf/neo4j.properties
     echo "metrics.graphite.server=${GRAPHITE_ADDRESS}" >> conf/neo4j.properties
     echo "metrics.graphite.interval=${GRAPHITE_INTERVAL:-3m}" >> conf/neo4j.properties
