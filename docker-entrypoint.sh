@@ -3,7 +3,7 @@
 setting() {
     setting="${1}"
     value="${2}"
-    file="${3}"
+    file="neo4j.conf"
     if [ -n "${value}" ]; then
         sed --in-place "s|.*${setting}=.*|${setting}=${value}|" conf/"${file}"
     fi
